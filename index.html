@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bruna Periquito – IT Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2F4;--panel:#fff;--ink:#12202B;--mute:#4D6170;--line:#CBD6DC;--blue:#1F62D6;--amber:#B87500;--ok:#17744A;--hero:#12202B;--heroink:#EAF1F5;--heroblue:#6FA4FF;--heroamber:#FFBE3D;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C161D;--panel:#14232D;--ink:#EAF1F5;--mute:#9DB1BF;--line:#27394511;--line:#2A3D4A;--blue:#6FA4FF;--amber:#FFBE3D;--ok:#4CCB8D;--hero:#0A1218}}
+:root[data-theme="dark"]{--bg:#0C161D;--panel:#14232D;--ink:#EAF1F5;--mute:#9DB1BF;--line:#2A3D4A;--blue:#6FA4FF;--amber:#FFBE3D;--ok:#4CCB8D;--hero:#0A1218}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.1;margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+.hero{background:var(--hero);color:var(--heroink);padding:1.25rem 0 4rem}
+.bar{display:flex;justify-content:flex-end;gap:.5rem;margin-bottom:2.5rem}
+.bar button{background:transparent;color:var(--heroink);border:1px solid #ffffff44;border-radius:6px;padding:.35rem .8rem;font:600 .9rem "Public Sans",sans-serif;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--heroink);color:var(--hero)}
+.id{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.avatar{object-fit:cover;width:80px;height:80px;border-radius:50%;background:#1F3A4D;border:2px solid var(--heroamber);display:grid;place-items:center;font:800 1.4rem "Bricolage Grotesque",sans-serif;color:var(--heroamber);flex:none}
+.hero h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:800}
+.role{color:#A9BDCA;margin:.25rem 0 0}
+.lead{max-width:38rem;font-size:1.2rem;margin:0 0 2.5rem}
+.counter{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;border-top:1px solid #ffffff2e;padding-top:1.5rem}
+.num{font:800 clamp(5rem,18vw,10rem)/.9 "Bricolage Grotesque",sans-serif;color:var(--heroamber);font-variant-numeric:tabular-nums}
+.num small{font-size:.5em;vertical-align:top}
+.clabel{font:700 clamp(1.3rem,3.5vw,2rem)/1.15 "Bricolage Grotesque",sans-serif;max-width:14rem}
+.clabel span{display:block;font:400 1rem "Public Sans",sans-serif;color:#A9BDCA;margin-top:.4rem}
+.queue{height:10px;border-radius:5px;background:#ffffff1f;margin-top:1.5rem;overflow:hidden}
+.queue i{display:block;height:100%;width:0;background:var(--heroamber);transition:width 1.8s cubic-bezier(.2,.8,.2,1)}
+section{padding:3.5rem 0 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:.4rem}
+.sub{color:var(--mute);margin:0 0 1.5rem;max-width:40rem}
+.tickets{display:grid;gap:1.25rem}
+@media(min-width:760px){.tickets{grid-template-columns:1fr 1fr}}
+.ticket{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--blue);border-radius:4px 14px 14px 4px;padding:1.25rem 1.25rem 1rem}
+.ticket h3{font-size:1.4rem}
+.tmeta{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;color:var(--mute);font-size:.95rem;margin:.3rem 0 .8rem}
+.status{color:var(--ok);font-weight:600}
+.ticket ul,.list ul{margin:0;padding-left:1.1rem}
+.ticket li{margin:.35rem 0}
+.diag{background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:1.25rem;margin-top:1.25rem}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:8px;padding:.7rem 1.1rem;font:600 1rem "Public Sans",sans-serif;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#0C161D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0C161D}}
+.btn:disabled{opacity:.6;cursor:wait}
+#steps{list-style:none;padding:0;margin:1rem 0 0}
+#steps li{display:flex;gap:.6rem;padding:.3rem 0;color:var(--mute)}
+#steps li.done{color:var(--ink)}
+#steps li.done::before{content:"✔";color:var(--ok)}
+#steps li:not(.done)::before{content:"…"}
+#result{font-weight:600;color:var(--ok);margin:.6rem 0 0;min-height:1.5em}
+.cols{display:grid;gap:1.25rem}
+@media(min-width:760px){.cols{grid-template-columns:1fr 1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.25rem}
+.card h3{font-size:1.15rem;margin-bottom:.4rem}
+.card p{margin:.2rem 0 0;color:var(--mute)}
+.tl{border-left:2px solid var(--line);margin-left:.4rem;padding-left:1.25rem}
+.tl article{margin-bottom:1.5rem;position:relative}
+.tl article::before{content:"";position:absolute;left:calc(-1.25rem - 7px);top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--blue)}
+.tl h3{font-size:1.2rem}
+.tl .tmeta{margin:.1rem 0 .4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0}
+.chips li{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;font-size:.95rem}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.8rem 1.25rem;margin-top:1rem}
+summary{cursor:pointer;font:700 1.1rem "Bricolage Grotesque",sans-serif}
+.contact{padding-bottom:4rem}
+.contact .card a{display:block;margin:.25rem 0;word-break:break-word}
+footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;color:var(--mute);font-size:.9rem}
+.fleet{display:grid;grid-template-columns:repeat(auto-fill,minmax(26px,1fr));gap:6px;margin-top:1.5rem;max-width:40rem}
+.pc{appearance:none;aspect-ratio:4/3;border:2px solid #ffffff55;border-bottom-width:5px;border-radius:3px;background:transparent;padding:0;cursor:default;transition:background .25s,border-color .25s}
+.pc.ok{background:#4CCB8D;border-color:#4CCB8D;cursor:pointer}
+.pc.ok:hover,.pc.ok:focus-visible{background:var(--heroamber);border-color:var(--heroamber)}
+.fnote{color:#A9BDCA;margin:.8rem 0 0;min-height:1.6em}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tabs button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.5rem .9rem;font:600 .95rem "Public Sans",sans-serif;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#0C161D}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#0C161D}}
+#panel{padding:1.25rem}
+.ticketform{background:var(--panel);border:1px solid var(--line);border-top:6px solid var(--amber);border-radius:14px 14px 4px 4px;padding:.4rem 1.25rem;max-width:36rem}
+.crow{display:flex;align-items:center;gap:.9rem;padding:.9rem 0;border-bottom:1px dashed var(--line)}
+.crow:last-child{border:0}
+.ci{width:2.4rem;height:2.4rem;border-radius:8px;background:var(--hero);color:var(--heroamber);display:grid;place-items:center;font:800 1rem "Bricolage Grotesque",sans-serif;flex:none}
+.crow a{flex:1;font-weight:600;word-break:break-word}
+.copy{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:.3rem .7rem;font:600 .85rem "Public Sans",sans-serif;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.queue i{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="wrap">
+  <div class="bar" role="group" aria-label="Language">
+   <button id="theme" aria-label="Tema claro/escuro · Light/dark theme" title="Light/dark">☀</button><button id="pt" aria-pressed="true">PT</button><button id="en" aria-pressed="false">EN</button>
+  </div>
+  <div class="id">
+   <img class="avatar" alt="Bruna Periquito" src="data:image/jpeg;base64,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">
+   <div><h1>Bruna Periquito</h1><p class="role" data-i="role"></p></div>
+  </div>
+  <p class="lead" data-i="lead"></p>
+  <div class="counter">
+   <div class="num" id="num" aria-label="50+">0</div>
+   <div class="clabel"><span style="display:inline;font:inherit;color:inherit;margin:0" data-i="clabel"></span><span data-i="csub"></span></div>
+  </div>
+  <div class="fleet" id="fleet" role="group" aria-label="50"></div><p class="fnote" id="fnote" aria-live="polite" data-i="fhint"></p>
+ </div>
+</header>
+
+<main class="wrap">
+ <section id="internships">
+  <h2 data-i="h_int"></h2>
+  <p class="sub" data-i="s_int"></p>
+  <div class="tickets">
+   <article class="ticket">
+    <h3>PC.Clinic</h3>
+    <div class="tmeta"><span data-i="t_it">IT Support Internship</span><span>2014 – 2015</span></div>
+    <ul data-list="pc"></ul>
+   </article>
+   <article class="ticket">
+    <h3>Click PC</h3>
+    <div class="tmeta"><span data-i="t_it">IT Support Internship</span><span>2014 – 2015</span></div>
+    <ul data-list="click"></ul>
+   </article>
+  </div>
+  <div class="diag">
+   <strong data-i="d_title"></strong>
+   <p class="sub" style="margin:.3rem 0 .8rem" data-i="d_sub"></p>
+   <button class="btn" id="run" data-i="d_btn"></button>
+   <ul id="steps" aria-live="polite"></ul>
+   <p id="result"></p>
+  </div>
+ </section>
+
+ <section>
+  <h2 data-i="h_sum"></h2>
+  <p class="sub" style="max-width:46rem;color:var(--ink)" data-i="sum"></p>
+ </section>
+
+ <section>
+  <h2 data-i="h_skills"></h2>
+  <div class="tabs" id="tabs" role="tablist"></div><div class="card" id="panel" role="tabpanel"><ul class="chips" id="pchips"></ul></div>
+ </section>
+
+ <section>
+  <h2 data-i="h_exp"></h2>
+  <p class="sub"></p>
+  <div class="tl" id="exp"></div>
+  <div class="card" style="margin-top:.5rem">
+   <h3>Recolha Solidária <span style="font-weight:500;color:var(--mute);font-size:.95rem">· Database Internship · 2014 – 2015</span></h3>
+   <p data-i="db"></p>
+  </div>
+ </section>
+
+ <section>
+  <h2 data-i="h_edu"></h2>
+  <div class="card"><h3 data-i="edu_t"></h3><p>IEFP, Lisboa</p><p data-i="edu_d"></p></div>
+  <details><summary data-i="h_cert"></summary>
+   <ul class="chips" id="certs" style="margin-top:.9rem"></ul>
+  </details>
+ </section>
+
+ <section>
+  <h2 data-i="h_lang"></h2>
+  <ul class="chips" id="langs"></ul>
+ </section>
+
+ <section class="contact">
+  <h2 data-i="h_contact"></h2>
+  <p class="sub" data-i="c_sub"></p>
+  <div class="ticketform">
+   <div class="crow"><span class="ci">@</span><a href="mailto:brunaperiquito@hotmail.com">brunaperiquito@hotmail.com</a><button class="copy" data-copy="brunaperiquito@hotmail.com" data-i="copy"></button></div>
+   <div class="crow"><span class="ci">☎</span><a href="tel:+351969445732">969 445 732</a><button class="copy" data-copy="969445732" data-i="copy"></button></div>
+   <div class="crow"><span class="ci">in</span><a href="https://linkedin.com/in/brunaperiquito" target="_blank" rel="noopener">linkedin.com/in/brunaperiquito</a><button class="copy" data-copy="https://linkedin.com/in/brunaperiquito" data-i="copy"></button></div>
+   <div class="crow"><span class="ci">⌖</span><span>Lisboa, Portugal</span></div>
+  </div>
+ </section>
+</main>
+<footer><div class="wrap">© 2026 Bruna Periquito</div></footer>
+
+<script>
+var T={
+pt:{
+role:"Suporte IT · Instalação e configuração de Windows · Resolução técnica de problemas",
+lead:"Técnica de suporte IT com estágios práticos em reparação de computadores. Hoje trabalho em Trust & Safety, a investigar casos complexos e a seguir procedimentos críticos.",
+clabel:"computadores reparados",csub:"e a contar.",
+h_int:"Estágios de suporte IT",s_int:"A minha base técnica: reparação e configuração de computadores, com diagnóstico, manutenção e atendimento ao cliente.",
+t_it:"Estágio de Suporte IT",
+pc:["Instalei e configurei sistemas Windows, drivers e aplicações padrão num ambiente de reparação supervisionado.","Ajudei a diagnosticar problemas de hardware e software: arranque, desempenho, conectividade e periféricos.","Fiz manutenção: verificação de componentes, atualizações, cópias de segurança e análise de malware.","Dei apoio básico a utilizadores e documentei o progresso das reparações e o trabalho concluído."],
+click:["Recebi clientes, registei os problemas reportados e recolhi a informação necessária para o diagnóstico.","Fiz resolução de problemas de hardware e software, instalação de sistemas operativos e configuração de aplicações, sob supervisão.","Apoiei a manutenção de rotina, os testes e a preparação dos computadores antes de voltarem aos clientes.","Ajudei a organizar equipamento, acessórios e áreas de trabalho técnicas, seguindo os procedimentos."],
+d_title:"Diagnóstico rápido",d_sub:"Assim começo uma reparação: percorro as mesmas verificações, uma a uma.",d_btn:"Executar diagnóstico",
+steps:["Arranque do sistema","Desempenho","Conectividade","Periféricos","Cópia de segurança e malware"],res:"Diagnóstico concluído. Sem problemas por resolver.",
+h_sum:"Resumo",sum:"Profissional de IT com experiência prática de estágio em instalação e configuração de Windows, diagnóstico de hardware e software e apoio ao utilizador. Tenho conhecimentos de base em Active Directory, permissões de utilizador e segurança Windows, e um curso profissional de nível 4 (QEQ) em Information Technology. Tenho mais de oito anos de liderança operacional, atendimento ao cliente e resolução analítica de problemas.",
+h_skills:"Caixa de ferramentas",
+sk:[["Windows e apoio ao utilizador","Instalação e configuração de Windows · diagnóstico de hardware e software · resolução técnica de problemas · apoio ao utilizador"],["Identidade e segurança","Active Directory (base) · contas e permissões de utilizador · conceitos de segurança Windows"],["Operações IT","Investigação de problemas · escalamento · cumprimento de procedimentos · documentação de incidentes · melhoria de processos"],["Dados e produtividade","Microsoft Office · Excel avançado · Microsoft Access · SQL · MySQL · Oracle SQL Developer"],["Desenvolvimento","Java · C · C++ · JavaScript · HTML · Python (a aprender) · Power BI (a aprender)"],["Métodos de trabalho","ITIL 4 Fundamentals · bases de Scrum · colaboração · priorização · comunicação"]],
+h_exp:"Experiência profissional",
+ex:[["Trust & Safety Associate / Content Reviewer","Accenture","Abr 2024 – presente","Revisão, classificação e remoção de conteúdo segundo as políticas do cliente. Investigação de casos complexos e escalamento de incidentes sensíveis. Mercado português e depois italiano."],["Assistant Manager","Lidl","Jan 2016 – Mar 2024","Gestão diária da loja e coordenação de equipas de turno. Análise de KPIs de produtividade e vendas e planos de ação. Promovida internamente de Sales Assistant a Assistant Manager."],["Fotógrafa freelancer","Independente","Dez 2018 – presente","Comunicação com clientes, agendamento, edição de fotografia e entrega de conteúdos multimédia."]],
+db:"Inseri, atualizei e organizei dados com Excel e ferramentas de bases de dados, e usei SQL e MySQL para consultar registos para a equipa de administração.",
+h_edu:"Formação",edu_t:"Curso Profissional em Information Technology (QEQ nível 4)",edu_d:"Desenvolvimento de software, bases de dados, SQL, MySQL, Java, C, C++, JavaScript, HTML, Access, Excel, Word e PowerPoint.",
+h_cert:"Certificações e formação",
+h_lang:"Línguas que falo",lg:["Português: nativo","Inglês: C1","Italiano: B2","Espanhol: A2"],
+h_contact:"Abrir um ticket",c_sub:"Diz-me como posso ajudar. Escolhe o canal que preferires.",copy:"Copiar",copied:"Copiado!",fhint:"Cada quadrado é um computador. Clica num para ver um tipo de problema.",problem:"problema tipo",fixed:"resolvido"},
+en:{
+role:"IT Support · Windows installation & configuration · Technical troubleshooting",
+lead:"IT support technician with hands-on internships in computer repair. Today I work in Trust & Safety, investigating complex cases and following critical procedures.",
+clabel:"computers repaired",csub:"and counting.",
+h_int:"IT support internships",s_int:"My technical foundation: repairing and configuring computers, with diagnostics, maintenance and customer service.",
+t_it:"IT Support Internship",
+pc:["Installed and configured Windows operating systems, device drivers and standard applications in a supervised repair environment.","Helped diagnose hardware and software issues: startup, performance, connectivity and peripherals.","Supported maintenance: component checks, system updates, data backup and malware scanning.","Provided basic end-user support and documented repair progress and completed work."],
+click:["Handled customer intake, recording reported issues and gathering the information needed for diagnosis.","Performed supervised hardware and software troubleshooting, operating system installation and application configuration.","Supported routine maintenance, testing and preparation of computers before return to customers.","Helped organise equipment, accessories and technical work areas following service procedures."],
+d_title:"Quick diagnostic",d_sub:"This is how I start a repair: I run the same checks, one by one.",d_btn:"Run diagnostic",
+steps:["System startup","Performance","Connectivity","Peripherals","Backup and malware"],res:"Diagnostic complete. No open issues.",
+h_sum:"Summary",sum:"IT professional with practical internship experience in Windows installation and configuration, hardware and software diagnostics, and end-user support. Foundational knowledge of Active Directory, user permissions and Windows security, and an EQF Level 4 vocational qualification in Information Technology. More than eight years of operational leadership, customer service and analytical problem-solving.",
+h_skills:"Toolbox",
+sk:[["Windows & end-user support","Windows installation and configuration · hardware and software diagnostics · technical troubleshooting · end-user support"],["Identity & security","Basic Active Directory · user accounts and permissions · basic Windows security concepts"],["IT operations","Issue investigation · escalation · procedural compliance · incident documentation · process improvement"],["Data & productivity","Microsoft Office · Advanced Excel · Microsoft Access · SQL · MySQL · Oracle SQL Developer"],["Development","Java · C · C++ · JavaScript · HTML · Python (learning) · Power BI (learning)"],["Ways of working","ITIL 4 Fundamentals · Scrum basics · collaboration · prioritization · communication"]],
+h_exp:"Professional experience",
+ex:[["Trust & Safety Associate / Content Reviewer","Accenture","Apr 2024 – present","Review, classify and remove content under client policies. Investigate complex cases and escalate policy-sensitive incidents. Portuguese market, later Italian."],["Assistant Manager","Lidl","Jan 2016 – Mar 2024","Ran daily store operations and coordinated shift teams. Analysed productivity and sales KPIs and built action plans. Promoted internally from Sales Assistant to Assistant Manager."],["Freelance Photographer","Self-employed","Dec 2018 – present","Client communication, scheduling, photo editing and delivery of multimedia content."]],
+db:"Entered, updated and organised data with Excel and database tools, and used SQL and MySQL to query records for the administration team.",
+h_edu:"Education",edu_t:"Vocational Course in Information Technology (EQF Level 4)",edu_d:"Software development, databases, SQL, MySQL, Java, C, C++, JavaScript, HTML, Access, Excel, Word and PowerPoint.",
+h_cert:"Certifications & training",
+h_lang:"What I speak",lg:["Portuguese: native","English: C1","Italian: B2","Spanish: A2"],
+h_contact:"Open a ticket",c_sub:"Tell me how I can help. Pick the channel you prefer.",copy:"Copy",copied:"Copied!",fhint:"Each square is a computer. Click one to see a type of problem.",problem:"typical issue",fixed:"resolved"}};
+var CERTS=["Advanced Excel · Udacity, 2026","AI for IT Support · 2026","Oracle Database · Oracle University, 2026","Reinvention with Agentic AI · Accenture, 2026","Microsoft Excel · Skillsoft, 2026","Registered Scrum Basics · Scrum Inc., 2025","ITIL 4 Foundation · 2025","Oracle Database 12c R2 SQL · 2025","Adobe Premiere Pro CC · 2025","Adobe Photoshop · 2025","Italian Language Course · Instituto Soyuz"];
+var lang="pt",timers=[],tab=0;
+function renderSkills(){var d=T[lang],t=$("#tabs");t.innerHTML="";d.sk.forEach(function(s,i){var b=document.createElement("button");b.textContent=s[0];b.setAttribute("role","tab");b.setAttribute("aria-selected",i===tab);b.onclick=function(){tab=i;renderSkills()};t.appendChild(b)});fill($("#pchips"),d.sk[tab][1].split(" · "))}
+function $(s){return document.querySelector(s)}
+function fill(ul,arr){ul.innerHTML="";arr.forEach(function(t){var li=document.createElement("li");li.textContent=t;ul.appendChild(li)})}
+function render(){
+ var d=T[lang];document.documentElement.lang=lang;
+ document.querySelectorAll("[data-i]").forEach(function(e){if(d[e.dataset.i]!==undefined)e.textContent=d[e.dataset.i]});
+ fill($('[data-list="pc"]'),d.pc);fill($('[data-list="click"]'),d.click);
+ renderSkills();
+ $("#exp").innerHTML=d.ex.map(function(){return '<article><h3></h3><div class="tmeta"><span></span><span></span></div><p style="margin:0"></p></article>'}).join("");
+ document.querySelectorAll("#exp article").forEach(function(a,i){var e=d.ex[i];a.querySelector("h3").textContent=e[0];var s=a.querySelectorAll(".tmeta span");s[0].textContent=e[1];s[1].textContent=e[2];a.querySelector("p").textContent=e[3]});
+ fill($("#certs"),CERTS);fill($("#langs"),d.lg);
+ $("#pt").setAttribute("aria-pressed",lang==="pt");$("#en").setAttribute("aria-pressed",lang==="en");
+ resetDiag();
+}
+function resetDiag(){timers.forEach(clearTimeout);timers=[];$("#steps").innerHTML="";$("#result").textContent="";$("#run").disabled=false}
+$("#run").onclick=function(){
+ var d=T[lang],ul=$("#steps");resetDiag();$("#run").disabled=true;
+ d.steps.forEach(function(s,i){
+  timers.push(setTimeout(function(){var li=document.createElement("li");li.textContent=s;ul.appendChild(li);
+   timers.push(setTimeout(function(){li.className="done"},350))},i*600));
+ });
+ timers.push(setTimeout(function(){$("#result").textContent=d.res;$("#run").disabled=false},d.steps.length*600+500));
+};
+$("#pt").onclick=function(){lang="pt";render()};
+$("#en").onclick=function(){lang="en";render()};
+$("#theme").textContent=matchMedia("(prefers-color-scheme:dark)").matches?"☀":"☾";
+$("#theme").onclick=function(){var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark";this.textContent=dark?"☾":"☀"};
+document.querySelectorAll(".copy").forEach(function(b){b.onclick=function(){var v=b.dataset.copy;function ok(){b.textContent=T[lang].copied;setTimeout(function(){b.textContent=T[lang].copy},1500)}
+ function fb(){var x=document.createElement("textarea");x.value=v;document.body.appendChild(x);x.select();var r=false;try{r=document.execCommand("copy")}catch(e){}x.remove();if(r)ok()}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(ok,fb)}else fb()}});
+render();
+(function(){
+ var n=$("#num"),target=50,reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,fleet=$("#fleet"),pcs=[];
+ for(var i=1;i<=50;i++){var b=document.createElement("button");b.className="pc";b.dataset.n=i;b.setAttribute("aria-label","PC #"+i);fleet.appendChild(b);pcs.push(b)}
+ fleet.onclick=function(e){var b=e.target.closest(".pc");if(!b||!b.classList.contains("ok"))return;var d=T[lang];$("#fnote").textContent="PC #"+b.dataset.n+" · "+d.problem+": "+d.steps[(b.dataset.n*7)%5]+" · "+d.fixed};
+ function lit(c){for(var j=0;j<c;j++)pcs[j].classList.add("ok")}
+ function done(){n.innerHTML='50<small>+</small>';lit(50)}
+ if(reduce){done();return}
+ var start=null;
+ function step(t){if(!start)start=t;var p=Math.min((t-start)/1800,1),e=1-Math.pow(1-p,3),c=Math.round(target*e);n.textContent=c;lit(c);if(p<1)requestAnimationFrame(step);else done()}
+ requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
